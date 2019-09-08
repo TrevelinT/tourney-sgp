@@ -1,15 +1,20 @@
 import { createStore, applyMiddleware, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import middlewares from "./middlewares";
+import logger from "redux-logger";
+import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducers";
+import rootSaga from "./ducks/sagas";
 
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore(): Store {
+  const saga = createSagaMiddleware();
+  const middlewares = [logger, saga];
   const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(...middlewares)),
   );
+  saga.run(rootSaga);
 
   if (process.env.NODE_ENV !== "production" && module.hot) {
     module.hot.accept("./reducers", (): void =>

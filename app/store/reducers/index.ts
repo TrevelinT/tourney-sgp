@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import baseReducer from "../ducks/base";
+import matchReducer from "../ducks/match";
+import playerReducer from "../ducks/player";
 
 const rootReducer = combineReducers({
-  base: baseReducer,
+  match: matchReducer,
+  player: playerReducer,
 });
 
 export default rootReducer;

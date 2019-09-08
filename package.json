@@ -31,6 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/core": "10.0.17",
+    "core-js": "3.2.1",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-helmet": "5.2.1",
@@ -40,6 +41,8 @@
     "redux": "4.0.4",
     "redux-devtools-extension": "2.13.8",
     "redux-logger": "3.0.6",
+    "redux-saga": "1.0.5",
+    "regenerator-runtime": "0.13.3",
     "reselect": "4.0.0",
     "sanitize.css": "11.0.0"
   },
