@@ -8,7 +8,7 @@ class App extends Component<{}, {}> {
     return (
       <div>
         <Helmet>
-          <title>React boilerplate with Typescript</title>
+          <title>Torneio SGP</title>
         </Helmet>
         <Router />
       </div>

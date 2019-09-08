@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from "react";
 import { css } from "@emotion/core";
-import FormContainer from "./FormContainer";
 import { Link } from "react-router-dom";
 
 const base = css({
@@ -32,10 +31,9 @@ export default class Home extends Component<{}, {}> {
     return (
       <div>
         <h1 css={[base, hover]}>Torneio SGP</h1>
-        <h2 css={h2}>Friendlies</h2>
-        <FormContainer />
+        <h2 css={h2}>Pontuação</h2>
         <button css={button}>
-          <Link to="/points">Pontuação</Link>
+          <Link to="/">Partidas</Link>
         </button>
       </div>
     );
