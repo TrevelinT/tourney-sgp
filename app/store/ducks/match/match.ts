@@ -2,11 +2,9 @@ import { cps, select, put, takeLatest } from "redux-saga/effects";
 import { Match } from "domain/match";
 import { Player } from "domain/player";
 import { MATCH } from "../actionTypes";
-import {
-  PlayerEntities,
-  operations as playerOperations,
-} from "../player/player";
+import { operations as playerOperations } from "../player/player";
 import { endMatch as endMatchUseCase } from "app/match/endMatch";
+import { playerSelectors } from "../player";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function applyNodeCallbacks<T extends (...arg: any[]) => any>(fn: T) {
@@ -55,12 +53,9 @@ const endMatch = (match: Match): MatchActionTypes => ({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getPlayers = (state: any): PlayerEntities => state.player;
-
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function* endMatchSaga({ payload: { match } }: EndMatch) {
-  const playerEntities: PlayerEntities = yield select(getPlayers);
+  const playerEntities = yield select(playerSelectors.getPlayerEntity);
 
   const players: Player[] = Object.values(match)
     .map((id: number): Player => playerEntities[id])

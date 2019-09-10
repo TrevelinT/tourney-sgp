@@ -27,6 +27,17 @@ export const operations = {
   updatePlayer,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getPlayers = (state: any): Player[] => Object.values(state.player);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getPlayerEntity = (state: any): PlayerEntities => state.player;
+
+export const selectors = {
+  getPlayers,
+  getPlayerEntity,
+};
+
 const initialState: PlayerState = {};
 
 export const reducer = (

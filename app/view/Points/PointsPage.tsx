@@ -1,6 +1,7 @@
-import React, { Component, ReactNode } from "react";
+import React, { PureComponent, ReactNode } from "react";
 import { css } from "@emotion/core";
 import { Link } from "react-router-dom";
+import PointsContainer from "./PointsContainer";
 
 const base = css({
   textAlign: "center",
@@ -26,12 +27,13 @@ const button = css({
   margin: "0 auto",
 });
 
-export default class Home extends Component<{}, {}> {
+export default class Home extends PureComponent<{}, {}> {
   render(): ReactNode {
     return (
       <div>
         <h1 css={[base, hover]}>Torneio SGP</h1>
         <h2 css={h2}>Pontuação</h2>
+        <PointsContainer />
         <button css={button}>
           <Link to="/">Partidas</Link>
         </button>
