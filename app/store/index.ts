@@ -7,11 +7,12 @@ import rootSaga from "./ducks/sagas";
 
 export type AppState = ReturnType<typeof rootReducer>;
 
-export default function configureStore(): Store {
+export default function configureStore(persistedState: AppState): Store {
   const saga = createSagaMiddleware();
   const middlewares = [logger, saga];
   const store = createStore(
     rootReducer,
+    persistedState,
     composeWithDevTools(applyMiddleware(...middlewares)),
   );
   saga.run(rootSaga);
