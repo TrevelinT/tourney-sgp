@@ -1,5 +1,6 @@
-import { PLAYER } from "../actionTypes";
+import { PLAYER, GLOBAL } from "../actionTypes";
 import { Player } from "domain/player";
+import { GlobalActionTypes } from "../global/global";
 
 export interface PlayerEntities {
   [index: number]: Player;
@@ -42,17 +43,19 @@ const initialState: PlayerState = {};
 
 export const reducer = (
   state = initialState,
-  action: PlayerActionTypes,
+  action: PlayerActionTypes | GlobalActionTypes,
 ): PlayerState => {
   switch (action.type) {
     case PLAYER.UPDATE:
       return {
         ...state,
-        ...(action.payload.players as Player[]).reduce(
+        ...((action as PlayerActionTypes).payload.players as Player[]).reduce(
           (acc, value) => ({ ...acc, [value.id]: value }),
           {},
         ),
       };
+    case GLOBAL.RESET:
+      return initialState;
     default:
       return state;
   }

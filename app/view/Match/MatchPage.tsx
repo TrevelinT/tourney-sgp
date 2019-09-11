@@ -1,20 +1,20 @@
-import React, { PureComponent, ReactNode } from "react";
+import React, { Component, ReactNode } from "react";
 import { css } from "@emotion/core";
+import FormContainer from "./FormContainer";
 import { Link } from "react-router-dom";
-import PointsContainer from "./PointsContainer";
 
 const button = css({
   display: "block",
   margin: "0 auto",
 });
 
-export default class Home extends PureComponent<{}, {}> {
+export default class Home extends Component<{}, {}> {
   render(): ReactNode {
     return (
       <div>
-        <PointsContainer />
+        <FormContainer />
         <button css={button}>
-          <Link to="/match">Partidas</Link>
+          <Link to="/points">Pontuação</Link>
         </button>
       </div>
     );

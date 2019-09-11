@@ -1,10 +1,11 @@
 import { cps, select, put, takeLatest } from "redux-saga/effects";
 import { Match } from "domain/match";
 import { Player } from "domain/player";
-import { MATCH } from "../actionTypes";
+import { MATCH, GLOBAL } from "../actionTypes";
 import { operations as playerOperations } from "../player/player";
 import { endMatch as endMatchUseCase } from "app/match/endMatch";
 import { playerSelectors } from "../player";
+import { GlobalActionTypes } from "../global/global";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function applyNodeCallbacks<T extends (...arg: any[]) => any>(fn: T) {
@@ -90,13 +91,15 @@ const initialState = {
 
 export const reducer = (
   state = initialState,
-  action: MatchActionTypes,
+  action: MatchActionTypes | GlobalActionTypes,
 ): MatchState => {
   switch (action.type) {
     case MATCH.END:
       return {
         status: matchStatuses.FINISHED,
       };
+    case GLOBAL.RESET:
+      return initialState;
     default:
       return state;
   }
